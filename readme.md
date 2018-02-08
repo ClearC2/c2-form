@@ -78,17 +78,15 @@ It is a common requirement to be able to update child objects. This can be done 
 ```jsx
 const lineItems = this.props.currentValues.get('lineItems') || List()
 
-{lineItems.map((lineItem, i) => {
-  return (
-    <div>
-      <input
-        value={lineItem.get('name') || ''}
-        onChange={e => {
-          const updatedItems = lineItems.update(i, item => item.set('name', e.target.value))
-          this.props.setValue('lineItems', updatedItems)
-        }}
-      />
-    </div>
-  )
-})}
+{lineItems.map((lineItem, i) => (
+  <div key={i}>
+    <input
+      value={lineItem.get('name') || ''}
+      onChange={e => {
+        const updatedItems = lineItems.update(i, item => item.set('name', e.target.value))
+        this.props.setValue('lineItems', updatedItems)
+      }}
+    />
+  </div>
+))}
 ```
