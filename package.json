@@ -1,0 +1,63 @@
+{
+  "name": "c2-dialog",
+  "version": "1.0.9",
+  "description": "a react/redux dialog component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClearC2/c2-dialog"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "cd example && webpack-dev-server --inline --content-base dist --history-api-fallback --port 8088",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "lint": "standard \"src/**/*.js\"",
+    "test": "mocha --require babel-polyfill --require babel-register --require ./test/test_helper.js"
+  },
+  "author": "David Adams",
+  "license": "ISC",
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "$",
+      "global",
+      "describe",
+      "it"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "chai-immutable": "^1.6.0",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "immutable": "^3.8.2",
+    "mocha": "^5.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-immutable": "^4.0.0",
+    "standard": "^10.0.3",
+    "style-loader": "^0.17.0",
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "peerDependencies": {
+    "immutable": "^3.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-redux": "^4.0.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.0.0"
+  }
+}
