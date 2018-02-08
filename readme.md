@@ -7,7 +7,7 @@ Install c2-form by adding the following to your package.json file:
 "c2-form": "git+ssh://git@github.com:ClearC2/c2-form.git",
 ```
 
-Now add the reducer to your main application's reducer .
+Now add the reducer to your main application's reducer using the required key.
 
 ```js
 import {combineReducers} from 'redux-immutable'
