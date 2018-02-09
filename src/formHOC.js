@@ -11,14 +11,14 @@ import {
 } from './actions'
 
 export const formPropTypes = {
-  formName: PropTypes.string,
-  initialValues: PropTypes.object,
-  currentValues: PropTypes.object,
-  setInitialValues: PropTypes.func,
-  setValue: PropTypes.func,
-  setValues: PropTypes.func,
-  deleteField: PropTypes.func,
-  reset: PropTypes.func
+  formName: PropTypes.string.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  currentValues: PropTypes.object.isRequired,
+  setInitialValues: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  setValues: PropTypes.func.isRequired,
+  deleteField: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
 }
 
 const actions = {
