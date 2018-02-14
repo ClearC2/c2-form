@@ -1,6 +1,6 @@
 {
   "name": "c2-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a react/redux form component",
   "repository": {
     "type": "git",
