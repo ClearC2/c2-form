@@ -29,7 +29,7 @@ const actions = {
   reset
 }
 
-const toJS = value => value.toJS ? value.toJS() : value
+const toJS = value => value && value.toJS ? value.toJS() : value
 
 export default function (BaseComponent) {
   return connect(selector, actions)(class FormHOC extends Component {
