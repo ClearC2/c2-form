@@ -4,7 +4,7 @@
 Install c2-form by adding the following to your package.json file:
 
 ```
-"c2-form": "git+ssh://git@github.com:ClearC2/c2-form.git",
+yarn add ClearC2/c2-form#^1.0.0
 ```
 
 Now add the reducer to your main application's reducer using the required key.
