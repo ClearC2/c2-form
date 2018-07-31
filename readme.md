@@ -1,5 +1,7 @@
 # C2 Form
 
+Redux/ImmutableJS enabled forms
+
 ## Install
 
 ```
