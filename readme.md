@@ -1,7 +1,6 @@
 # C2 Form
 
-## Installation
-Install c2-form by adding the following to your package.json file:
+## Install
 
 ```
 yarn add ClearC2/c2-form#^1.0.0
