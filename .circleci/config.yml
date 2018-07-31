@@ -19,7 +19,6 @@ jobs:
           path: coverage
           prefix: coverage
       - run: yarn run build
-      - run: yarn run build:docs
       - run:
           command: yarn run semantic-release
           environment:
