@@ -1,4 +1,4 @@
-# C2 Form
+# C2 Form [![CircleCI](https://circleci.com/gh/ClearC2/c2-form.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-form)
 
 Redux/ImmutableJS enabled forms
 
