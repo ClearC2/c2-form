@@ -37,6 +37,7 @@
   "author": "David Adams",
   "license": "ISC",
   "devDependencies": {
+    "@reactions/component": "^2.0.2",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
