@@ -36,7 +36,7 @@ The `formHOC` gives your component props and connected actions scoped to this sp
 [See the working example.](example/src/Example.js)
 
 ## Redux-less
-There is also a redux-less HOC that uses component state. You do need to pass in a `formName`. The passed down props are exactly the same.
+There is also a redux-less HOC that uses component state. You do not need to pass in a `formName`. The passed down props are exactly the same.
 
 ```js
 import {withForm} from 'c2-form'
