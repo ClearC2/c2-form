@@ -24,6 +24,7 @@ const reducer = combineReducers({
 ```js
 import {connect} from 'react-redux'
 import {formHOC} from 'c2-form'
+import SiteForm from './SiteForm'
 
 const props = {siteId} => ({formName: `site-form-${siteId}`})
 
@@ -33,6 +34,16 @@ export default connect(props)(formHOC(SiteForm))
 The `formHOC` gives your component props and connected actions scoped to this specific form based on the `formName`.
 
 [See the working example.](example/src/Example.js)
+
+## Redux-less
+There is also a redux-less HOC that uses component state. You do need to pass in a `formName`. The passed down props are exactly the same.
+
+```js
+import {withForm} from 'c2-form'
+import SiteForm from './SiteForm'
+
+export default withForm(SiteForm)
+```
 
 ## Props
 #### `initialValues: object`

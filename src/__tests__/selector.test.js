@@ -1,6 +1,5 @@
 import {fromJS} from 'immutable'
-import {reducer, form} from '../src/index'
-import {expect} from 'chai'
+import {reducer, form} from '../index'
 
 describe('selector', () => {
   it('selectors correct props for clean form', () => {
@@ -18,7 +17,7 @@ describe('selector', () => {
       }
     })
     const props = form(state, {formName})
-    expect(fromJS(props)).to.equal(fromJS({
+    expect(fromJS(props)).toEqual(fromJS({
       initialValues: values,
       currentValues: values,
       isDirty: false
@@ -45,7 +44,7 @@ describe('selector', () => {
       }
     })
     const props = form(state, {formName})
-    expect(fromJS(props)).to.equal(fromJS({
+    expect(fromJS(props)).toEqual(fromJS({
       initialValues: initialValues,
       currentValues: currentValues,
       isDirty: true

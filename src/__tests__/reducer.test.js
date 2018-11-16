@@ -1,6 +1,5 @@
 import {fromJS} from 'immutable'
-import {actions, reducer} from '../src/index'
-import {expect} from 'chai'
+import {actions, reducer} from '../index'
 
 describe('reducer', () => {
   it('handles setInitialValues', () => {
@@ -9,7 +8,7 @@ describe('reducer', () => {
     const action = actions.setInitialValues(formName, initialValues)
     const nextState = reducer(undefined, action)
 
-    expect(nextState).to.equal(fromJS({
+    expect(nextState).toEqual(fromJS({
       [action.formName]: {
         initialValues,
         currentValues: initialValues
@@ -36,7 +35,7 @@ describe('reducer', () => {
     })
     const nextState = reducer(currentState, action)
 
-    expect(nextState).to.equal(fromJS({
+    expect(nextState).toEqual(fromJS({
       [action.formName]: {
         initialValues: {
           foo: 'bar',
@@ -71,7 +70,7 @@ describe('reducer', () => {
       }
     })
     const nextState = reducer(currentState, action)
-    expect(nextState).to.equal(fromJS({
+    expect(nextState).toEqual(fromJS({
       [action.formName]: {
         initialValues: {
           foo: 'bar',
@@ -100,7 +99,7 @@ describe('reducer', () => {
     })
     const nextState = reducer(currentState, action)
 
-    expect(nextState).to.equal(fromJS({
+    expect(nextState).toEqual(fromJS({
       [action.formName]: {
         initialValues: {
           foo: 'bar',
@@ -132,7 +131,7 @@ describe('reducer', () => {
     })
     const nextState = reducer(currentState, action)
 
-    expect(nextState).to.equal(fromJS({
+    expect(nextState).toEqual(fromJS({
       [action.formName]: {
         initialValues: {
           foo: 'bar',

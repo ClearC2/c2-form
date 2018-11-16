@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import selector from './selector'
 import {
@@ -9,17 +8,7 @@ import {
   deleteField,
   reset
 } from './actions'
-
-export const formPropTypes = {
-  formName: PropTypes.string.isRequired,
-  initialValues: PropTypes.object.isRequired,
-  currentValues: PropTypes.object.isRequired,
-  setInitialValues: PropTypes.func.isRequired,
-  setValue: PropTypes.func.isRequired,
-  setValues: PropTypes.func.isRequired,
-  deleteField: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired
-}
+import formPropTypes from './prop-types'
 
 const actions = {
   setInitialValues,
