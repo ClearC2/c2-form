@@ -40,7 +40,7 @@ There is also a redux-less HOC that uses component state. You do need to pass in
 
 ```js
 import {withForm} from 'c2-form'
-import SiteForm from './SiteForm
+import SiteForm from './SiteForm'
 
 export default withForm(SiteForm)
 ```
