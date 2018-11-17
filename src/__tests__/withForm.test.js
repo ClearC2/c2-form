@@ -4,6 +4,18 @@ import Component from '@reactions/component'
 import {render, fireEvent, cleanup} from 'react-testing-library'
 import withForm from '../withForm'
 
+const CurrentValues = ({children}) => (
+  <div data-testid='current-values'>
+    {JSON.stringify(children)}
+  </div>
+)
+
+const InitialValues = ({children}) => (
+  <div data-testid='initial-values'>
+    {JSON.stringify(children)}
+  </div>
+)
+
 function renderTest (sut) {
   const result = render(sut)
   return {
@@ -28,12 +40,8 @@ describe('withForm', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({initialValues, currentValues, setInitialValues}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <div data-testid='initial-values'>
-          {JSON.stringify(initialValues)}
-        </div>
-        <div data-testid='current-values'>
-          {JSON.stringify(currentValues)}
-        </div>
+        <InitialValues>{initialValues}</InitialValues>
+        <CurrentValues>{currentValues}</CurrentValues>
       </Component>
     )
     const WithFormTest = withForm(Test)
@@ -46,15 +54,9 @@ describe('withForm', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({initialValues, currentValues, setInitialValues, setValue}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <div data-testid='initial-values'>
-          {JSON.stringify(initialValues)}
-        </div>
-        <div data-testid='current-values'>
-          {JSON.stringify(currentValues)}
-        </div>
-        <button onClick={() => setValue('bar', 'BAR')}>
-          Click
-        </button>
+        <InitialValues>{initialValues}</InitialValues>
+        <CurrentValues>{currentValues}</CurrentValues>
+        <button onClick={() => setValue('bar', 'BAR')} />
       </Component>
     )
     const WithFormTest = withForm(Test)
@@ -68,34 +70,24 @@ describe('withForm', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({initialValues, currentValues, setInitialValues, setValues}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <div data-testid='initial-values'>
-          {JSON.stringify(initialValues)}
-        </div>
-        <div data-testid='current-values'>
-          {JSON.stringify(currentValues)}
-        </div>
-        <button onClick={() => setValues({foo: 'FOO', bar: 'BAR'})}>
-          Click
-        </button>
+        <InitialValues>{initialValues}</InitialValues>
+        <CurrentValues>{currentValues}</CurrentValues>
+        <button onClick={() => setValues({foo: 'FOO', bar: 'BAR', baz: 'BAZ'})} />
       </Component>
     )
     const WithFormTest = withForm(Test)
     const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
-    expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR'}))
+    expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR', baz: 'BAZ'}))
   })
 
   it('should delete field', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({currentValues, setInitialValues, deleteField}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <div data-testid='current-values'>
-          {JSON.stringify(currentValues)}
-        </div>
-        <button onClick={() => deleteField('foo')}>
-          Click
-        </button>
+        <CurrentValues>{currentValues}</CurrentValues>
+        <button onClick={() => deleteField('foo')} />
       </Component>
     )
     const WithFormTest = withForm(Test)
@@ -109,9 +101,7 @@ describe('withForm', () => {
     const Test = ({setInitialValues, setValue, isDirty}) => (
       <Component didMount={() => setInitialValues(values)}>
         <div>{isDirty ? 'DIRTY' : 'NOTDIRTY'}</div>
-        <button onClick={() => setValue('foo', 'FOO')}>
-          Click
-        </button>
+        <button onClick={() => setValue('foo', 'FOO')} />
       </Component>
     )
     const WithFormTest = withForm(Test)
@@ -125,18 +115,10 @@ describe('withForm', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({initialValues, currentValues, setInitialValues, setValue, reset}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <div data-testid='initial-values'>
-          {JSON.stringify(initialValues)}
-        </div>
-        <div data-testid='current-values'>
-          {JSON.stringify(currentValues)}
-        </div>
-        <button data-testid='set-value' onClick={() => setValue('foo', 'FOO')}>
-          set
-        </button>
-        <button data-testid='reset' onClick={reset}>
-          reset
-        </button>
+        <InitialValues>{initialValues}</InitialValues>
+        <CurrentValues>{currentValues}</CurrentValues>
+        <button data-testid='set-value' onClick={() => setValue('foo', 'FOO')} />
+        <button data-testid='reset' onClick={reset} />
       </Component>
     )
     const WithFormTest = withForm(Test)
