@@ -19,6 +19,11 @@ const withForm = (BaseComponent) => {
         currentValues: this.state.currentValues.set(field, fromJS(value))
       })
     }
+    setValues = (values) => {
+      this.setState({
+        currentValues: this.state.currentValues.merge(fromJS(values))
+      })
+    }
     deleteField = (field) => {
       this.setState({
         currentValues: this.state.currentValues.delete(field)
@@ -37,6 +42,7 @@ const withForm = (BaseComponent) => {
           {...this.state}
           setInitialValues={this.setInitialValues}
           setValue={this.setValue}
+          setValues={this.setValues}
           deleteField={this.deleteField}
           reset={this.reset}
           isDirty={!initialValues.equals(currentValues)}

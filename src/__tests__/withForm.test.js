@@ -63,7 +63,27 @@ describe('withForm', () => {
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({...values, bar: 'BAR'}))
   })
-
+  it('should set multiple current values', () => {
+    const values = {foo: 'foo', bar: 'bar'}
+    const Test = ({initialValues, currentValues, setInitialValues, setValues}) => (
+      <Component didMount={() => setInitialValues(values)}>
+        <div data-testid='initial-values'>
+          {JSON.stringify(initialValues)}
+        </div>
+        <div data-testid='current-values'>
+          {JSON.stringify(currentValues)}
+        </div>
+        <button onClick={() => setValues({foo: 'FOO', bar: 'BAR'})}>
+          Click
+        </button>
+      </Component>
+    )
+    const WithFormFoobar = withForm(Test)
+    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormFoobar />)
+    clickButton()
+    expect(getInitialValues()).toBe(JSON.stringify(values))
+    expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR'}))
+  })
   it('should delete field', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({currentValues, setInitialValues, deleteField}) => (
