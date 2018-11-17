@@ -19,8 +19,8 @@ describe('withForm', () => {
 
   it('should render base component', () => {
     const Test = () => <span>Foobar</span>
-    const WithFormFoobar = withForm(Test)
-    const {getByText} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {getByText} = renderTest(<WithFormTest />)
     getByText('Foobar')
   })
 
@@ -36,8 +36,8 @@ describe('withForm', () => {
         </div>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {getInitialValues, getCurrentValues} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {getInitialValues, getCurrentValues} = renderTest(<WithFormTest />)
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify(values))
   })
@@ -57,8 +57,8 @@ describe('withForm', () => {
         </button>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({...values, bar: 'BAR'}))
@@ -79,8 +79,8 @@ describe('withForm', () => {
         </button>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR'}))
@@ -98,8 +98,8 @@ describe('withForm', () => {
         </button>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {clickButton, getCurrentValues} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {clickButton, getCurrentValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
   })
@@ -114,8 +114,8 @@ describe('withForm', () => {
         </button>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {clickButton, getByText} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {clickButton, getByText} = renderTest(<WithFormTest />)
     getByText('NOTDIRTY')
     clickButton()
     getByText('DIRTY')
@@ -139,8 +139,8 @@ describe('withForm', () => {
         </button>
       </Component>
     )
-    const WithFormFoobar = withForm(Test)
-    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<WithFormFoobar />)
+    const WithFormTest = withForm(Test)
+    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     fireEvent.click(getByTestId('set-value'))
     expect(getCurrentValues()).not.toBe(getInitialValues())
     fireEvent.click(getByTestId('reset'))
