@@ -1,3 +1,8 @@
 module.exports = {
-  coverageDirectory: './coverage'
+  coverageDirectory: './coverage',
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/lib/',
+    '/example/'
+  ]
 }
