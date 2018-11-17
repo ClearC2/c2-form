@@ -14,11 +14,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn run test:report
+      - run: yarn test:report
       - store_artifacts:
           path: coverage
           prefix: coverage
-      - run: yarn run build
+      - run: yarn build
       - run:
           command: yarn run semantic-release
           environment:
