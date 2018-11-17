@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import Component from '@reactions/component'
+import {Provider} from 'react-redux'
 import {render, fireEvent, cleanup} from 'react-testing-library'
-import withForm from '../withForm'
+import {withForm, formHOC} from '..'
+import store from '../../example/src/store'
 
 const CurrentValues = ({children}) => (
   <div data-testid='current-values'>
@@ -26,12 +28,33 @@ function renderTest (sut) {
   }
 }
 
-describe('withForm', () => {
+// redux wrapper
+const formHOCWrapper = (TestClass) => () => {
+  TestClass = formHOC(TestClass)
+  return (
+    <Provider store={store}>
+      <TestClass formName='test-form' />
+    </Provider>
+  )
+}
+formHOCWrapper.toString = () => 'formHOC'
+
+// redux-less wrapper
+const withFormWrapper = (TestClass) => withForm(TestClass)
+withFormWrapper.toString = () => 'withForm'
+
+const wrappers = [
+  formHOCWrapper,
+  withFormWrapper
+]
+
+// test both redux and redux-less HOC's
+describe.each(wrappers)('%s', (wrapper) => {
   afterEach(cleanup)
 
   it('should render base component', () => {
     const Test = () => <span>Foobar</span>
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {getByText} = renderTest(<WithFormTest />)
     getByText('Foobar')
   })
@@ -44,7 +67,7 @@ describe('withForm', () => {
         <CurrentValues>{currentValues}</CurrentValues>
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {getInitialValues, getCurrentValues} = renderTest(<WithFormTest />)
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify(values))
@@ -59,7 +82,7 @@ describe('withForm', () => {
         <button onClick={() => setValue('bar', 'BAR')} />
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
@@ -75,7 +98,7 @@ describe('withForm', () => {
         <button onClick={() => setValues({foo: 'FOO', bar: 'BAR', baz: 'BAZ'})} />
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
@@ -90,7 +113,7 @@ describe('withForm', () => {
         <button onClick={() => deleteField('foo')} />
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {clickButton, getCurrentValues} = renderTest(<WithFormTest />)
     clickButton()
     expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
@@ -104,7 +127,7 @@ describe('withForm', () => {
         <button onClick={() => setValue('foo', 'FOO')} />
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {clickButton, getByText} = renderTest(<WithFormTest />)
     getByText('NOTDIRTY')
     clickButton()
@@ -121,7 +144,7 @@ describe('withForm', () => {
         <button data-testid='reset' onClick={reset} />
       </Component>
     )
-    const WithFormTest = withForm(Test)
+    const WithFormTest = wrapper(Test)
     const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
     fireEvent.click(getByTestId('set-value'))
     expect(getCurrentValues()).not.toBe(getInitialValues())
