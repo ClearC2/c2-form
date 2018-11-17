@@ -28,7 +28,7 @@ function renderTest (sut) {
   }
 }
 
-// redux wrapper
+// redux hoc
 const formHOCWrapper = (TestClass) => () => {
   TestClass = formHOC(TestClass)
   return (
@@ -39,67 +39,63 @@ const formHOCWrapper = (TestClass) => () => {
 }
 formHOCWrapper.toString = () => 'formHOC'
 
-// redux-less wrapper
+// redux-less hoc
 const withFormWrapper = (TestClass) => withForm(TestClass)
 withFormWrapper.toString = () => 'withForm'
 
-const wrappers = [
+const hocs = [
   formHOCWrapper,
   withFormWrapper
 ]
 
 // test both redux and redux-less HOC's
-describe.each(wrappers)('%s', (wrapper) => {
+describe.each(hocs)('%s', (hoc) => {
   afterEach(cleanup)
 
   it('should render base component', () => {
-    const Test = () => <span>Foobar</span>
-    const WithFormTest = wrapper(Test)
-    const {getByText} = renderTest(<WithFormTest />)
+    const Test = hoc(() => <span>Foobar</span>)
+    const {getByText} = renderTest(<Test />)
     getByText('Foobar')
   })
 
   it('should set initial and current values', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({initialValues, currentValues, setInitialValues}) => (
+    const Test = hoc(({initialValues, currentValues, setInitialValues}) => (
       <Component didMount={() => setInitialValues(values)}>
         <InitialValues>{initialValues}</InitialValues>
         <CurrentValues>{currentValues}</CurrentValues>
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {getInitialValues, getCurrentValues} = renderTest(<WithFormTest />)
+    ))
+    const {getInitialValues, getCurrentValues} = renderTest(<Test />)
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify(values))
   })
 
   it('should only set current value', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({initialValues, currentValues, setInitialValues, setValue}) => (
+    const Test = hoc(({initialValues, currentValues, setInitialValues, setValue}) => (
       <Component didMount={() => setInitialValues(values)}>
         <InitialValues>{initialValues}</InitialValues>
         <CurrentValues>{currentValues}</CurrentValues>
         <button onClick={() => setValue('bar', 'BAR')} />
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
+    ))
+    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<Test />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
-    expect(getCurrentValues()).toBe(JSON.stringify({...values, bar: 'BAR'}))
+    expect(getCurrentValues()).toBe(JSON.stringify({foo: 'foo', bar: 'BAR'}))
   })
 
   it('should set multiple current values', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({initialValues, currentValues, setInitialValues, setValues}) => (
+    const Test = hoc(({initialValues, currentValues, setInitialValues, setValues}) => (
       <Component didMount={() => setInitialValues(values)}>
         <InitialValues>{initialValues}</InitialValues>
         <CurrentValues>{currentValues}</CurrentValues>
         <button onClick={() => setValues({foo: 'FOO', bar: 'BAR', baz: 'BAZ'})} />
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
+    ))
+    const {clickButton, getCurrentValues, getInitialValues} = renderTest(<Test />)
     clickButton()
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR', baz: 'BAZ'}))
@@ -107,28 +103,26 @@ describe.each(wrappers)('%s', (wrapper) => {
 
   it('should delete field', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({currentValues, setInitialValues, deleteField}) => (
+    const Test = hoc(({currentValues, setInitialValues, deleteField}) => (
       <Component didMount={() => setInitialValues(values)}>
         <CurrentValues>{currentValues}</CurrentValues>
         <button onClick={() => deleteField('foo')} />
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {clickButton, getCurrentValues} = renderTest(<WithFormTest />)
+    ))
+    const {clickButton, getCurrentValues} = renderTest(<Test />)
     clickButton()
     expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
   })
 
   it('should pass isDirty flag', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({setInitialValues, setValue, isDirty}) => (
+    const Test = hoc(({setInitialValues, setValue, isDirty}) => (
       <Component didMount={() => setInitialValues(values)}>
         <div>{isDirty ? 'DIRTY' : 'NOTDIRTY'}</div>
         <button onClick={() => setValue('foo', 'FOO')} />
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {clickButton, getByText} = renderTest(<WithFormTest />)
+    ))
+    const {clickButton, getByText} = renderTest(<Test />)
     getByText('NOTDIRTY')
     clickButton()
     getByText('DIRTY')
@@ -136,16 +130,15 @@ describe.each(wrappers)('%s', (wrapper) => {
 
   it('should reset', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = ({initialValues, currentValues, setInitialValues, setValue, reset}) => (
+    const Test = hoc(({initialValues, currentValues, setInitialValues, setValue, reset}) => (
       <Component didMount={() => setInitialValues(values)}>
         <InitialValues>{initialValues}</InitialValues>
         <CurrentValues>{currentValues}</CurrentValues>
         <button data-testid='set-value' onClick={() => setValue('foo', 'FOO')} />
         <button data-testid='reset' onClick={reset} />
       </Component>
-    )
-    const WithFormTest = wrapper(Test)
-    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<WithFormTest />)
+    ))
+    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<Test />)
     fireEvent.click(getByTestId('set-value'))
     expect(getCurrentValues()).not.toBe(getInitialValues())
     fireEvent.click(getByTestId('reset'))
