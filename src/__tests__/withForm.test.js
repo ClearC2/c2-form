@@ -63,6 +63,7 @@ describe('withForm', () => {
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({...values, bar: 'BAR'}))
   })
+
   it('should set multiple current values', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({initialValues, currentValues, setInitialValues, setValues}) => (
@@ -84,6 +85,7 @@ describe('withForm', () => {
     expect(getInitialValues()).toBe(JSON.stringify(values))
     expect(getCurrentValues()).toBe(JSON.stringify({foo: 'FOO', bar: 'BAR'}))
   })
+
   it('should delete field', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = ({currentValues, setInitialValues, deleteField}) => (
