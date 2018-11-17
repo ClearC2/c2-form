@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ClearC2/c2-form/compare/v1.1.0...v1.1.1) (2018-11-17)
+
+
+### Bug Fixes
+
+* **withForm:** add missing setValues func ([#5](https://github.com/ClearC2/c2-form/issues/5)) ([8bbfb06](https://github.com/ClearC2/c2-form/commit/8bbfb06))
+
 # [1.1.0](https://github.com/ClearC2/c2-form/compare/v1.0.0...v1.1.0) (2018-11-16)
 
 
