@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, {Fragment} from 'react'
 import Component from '@reactions/component'
 import {Provider} from 'react-redux'
 import {render, fireEvent, cleanup} from 'react-testing-library'
 import {withForm, formHOC} from '..'
 import store from '../../example/src/store'
 
-const CurrentValues = ({children}) => (
-  <div data-testid='current-values'>
-    {JSON.stringify(children)}
-  </div>
-)
-
-const InitialValues = ({children}) => (
-  <div data-testid='initial-values'>
-    {JSON.stringify(children)}
-  </div>
+const Values = ({initial, current}) => (
+  <Fragment>
+    <div data-testid='initial-values'>
+      {JSON.stringify(initial)}
+    </div>
+    <div data-testid='current-values'>
+      {JSON.stringify(current)}
+    </div>
+  </Fragment>
 )
 
 function renderTest (sut) {
@@ -62,8 +61,7 @@ describe.each(hocs)('%s', (hoc) => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({initialValues, currentValues, setInitialValues}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <InitialValues>{initialValues}</InitialValues>
-        <CurrentValues>{currentValues}</CurrentValues>
+        <Values initial={initialValues} current={currentValues} />
       </Component>
     ))
     const {getInitialValues, getCurrentValues} = renderTest(<Test />)
@@ -75,8 +73,7 @@ describe.each(hocs)('%s', (hoc) => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({initialValues, currentValues, setInitialValues, setValue}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <InitialValues>{initialValues}</InitialValues>
-        <CurrentValues>{currentValues}</CurrentValues>
+        <Values initial={initialValues} current={currentValues} />
         <button onClick={() => setValue('bar', 'BAR')} />
       </Component>
     ))
@@ -90,8 +87,7 @@ describe.each(hocs)('%s', (hoc) => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({initialValues, currentValues, setInitialValues, setValues}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <InitialValues>{initialValues}</InitialValues>
-        <CurrentValues>{currentValues}</CurrentValues>
+        <Values initial={initialValues} current={currentValues} />
         <button onClick={() => setValues({foo: 'FOO', bar: 'BAR', baz: 'BAZ'})} />
       </Component>
     ))
@@ -105,7 +101,7 @@ describe.each(hocs)('%s', (hoc) => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({currentValues, setInitialValues, deleteField}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <CurrentValues>{currentValues}</CurrentValues>
+        <Values current={currentValues} />
         <button onClick={() => deleteField('foo')} />
       </Component>
     ))
@@ -132,8 +128,7 @@ describe.each(hocs)('%s', (hoc) => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({initialValues, currentValues, setInitialValues, setValue, reset}) => (
       <Component didMount={() => setInitialValues(values)}>
-        <InitialValues>{initialValues}</InitialValues>
-        <CurrentValues>{currentValues}</CurrentValues>
+        <Values initial={initialValues} current={currentValues} />
         <button data-testid='set-value' onClick={() => setValue('foo', 'FOO')} />
         <button data-testid='reset' onClick={reset} />
       </Component>
