@@ -7,7 +7,7 @@ import {
   setValues,
   deleteField,
   deleteCurrentForm,
-  deleteTargetForm,
+  deleteForm,
   reset
 } from './actions'
 import formPropTypes from './prop-types'
@@ -18,7 +18,7 @@ const actions = {
   setValues,
   deleteField,
   deleteCurrentForm,
-  deleteTargetForm,
+  deleteForm,
   reset
 }
 
@@ -36,8 +36,7 @@ export default function (BaseComponent) {
           setValue={(field, value) => this.props.setValue(formName, field, toJS(value))}
           setValues={values => this.props.setValues(formName, toJS(values))}
           deleteField={field => this.props.deleteField(formName, field)}
-          deleteCurrentForm={() => this.props.deleteCurrentForm(formName)}
-          deleteTargetForm={targetForm => this.props.deleteTargetForm(targetForm)}
+          deleteForm={(form = formName) => this.props.deleteForm(form)}
           reset={() => this.props.reset(formName)}
         />
       )
