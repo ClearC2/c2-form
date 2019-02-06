@@ -6,6 +6,7 @@ import {
   setValue,
   setValues,
   deleteField,
+  deleteForm,
   reset
 } from './actions'
 import formPropTypes from './prop-types'
@@ -15,6 +16,7 @@ const actions = {
   setValue,
   setValues,
   deleteField,
+  deleteForm,
   reset
 }
 
@@ -23,16 +25,22 @@ const toJS = value => value && value.toJS ? value.toJS() : value
 export default function (BaseComponent) {
   return connect(selector, actions)(class FormHOC extends Component {
     static propTypes = formPropTypes
+    setInitialValues = (values) => this.props.setInitialValues(this.props.formName, toJS(values))
+    setValue = (field, value) => this.props.setValue(this.props.formName, field, toJS(value))
+    setValues = (values) => this.props.setValues(this.props.formName, toJS(values))
+    deleteField = (field) => this.props.deleteField(this.props.formName, field)
+    deleteForm = () => this.props.deleteForm(this.props.formName)
+    reset = () => this.props.reset(this.props.formName)
     render () {
-      const {formName} = this.props
       return (
         <BaseComponent
           {...this.props}
-          setInitialValues={values => this.props.setInitialValues(formName, toJS(values))}
-          setValue={(field, value) => this.props.setValue(formName, field, toJS(value))}
-          setValues={values => this.props.setValues(formName, toJS(values))}
-          deleteField={field => this.props.deleteField(formName, field)}
-          reset={() => this.props.reset(formName)}
+          setInitialValues={this.setInitialValues}
+          setValue={this.setValue}
+          setValues={this.setValues}
+          deleteField={this.deleteField}
+          deleteForm={this.deleteForm}
+          reset={this.reset}
         />
       )
     }

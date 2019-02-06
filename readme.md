@@ -36,7 +36,10 @@ The `formHOC` gives your component props and connected actions scoped to this sp
 [See the working example.](example/src/Example.js)
 
 ## Redux-less
-There is also a redux-less HOC that uses component state. You do not need to pass in a `formName`. The passed down props are exactly the same.
+There is also a redux-less HOC that uses component state. You do not need to pass in a `formName`.
+The passed down props are exactly the same except for `deleteForm`. This is not passed down because `deleteForm` is only relevant
+for the redux enabled `formHOC` HOC.
+
 
 ```js
 import {withForm} from 'c2-form'
@@ -69,6 +72,9 @@ Delete a form field.
 
 #### `reset(): func`
 Sets the `currentValues` back to the `initialValues`.
+
+#### `deleteForm(): func`
+Deletes the `formName` key and data from redux.
 
 ## Tips
 

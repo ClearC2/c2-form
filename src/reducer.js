@@ -5,7 +5,8 @@ import {
   SET_VALUE,
   SET_VALUES,
   RESET,
-  DELETE_FIELD
+  DELETE_FIELD,
+  DELETE_FORM
 } from './actions'
 
 function form (state = Map(), action) {
@@ -23,6 +24,8 @@ function form (state = Map(), action) {
       return state.setIn([action.formName, 'currentValues'], state.getIn([action.formName, 'initialValues']) || Map())
     case DELETE_FIELD:
       return state.deleteIn([action.formName, 'currentValues', action.field])
+    case DELETE_FORM:
+      return state.delete(action.formName)
     default:
       return state
   }

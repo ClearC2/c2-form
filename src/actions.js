@@ -12,3 +12,6 @@ export const reset = formName => ({type: RESET, formName})
 
 export const DELETE_FIELD = 'c2-form/DELETE_FIELD'
 export const deleteField = (formName, field) => ({type: DELETE_FIELD, formName, field})
+
+export const DELETE_FORM = 'c2-form/DELETE_FORM'
+export const deleteForm = formName => ({type: DELETE_FORM, formName})
