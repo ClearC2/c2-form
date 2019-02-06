@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ClearC2/c2-form/compare/v1.1.1...v1.2.0) (2019-02-06)
+
+
+### Features
+
+* **delete:** add delete form functionality ([052088b](https://github.com/ClearC2/c2-form/commit/052088b))
+
 ## [1.1.1](https://github.com/ClearC2/c2-form/compare/v1.1.0...v1.1.1) (2018-11-17)
 
 
