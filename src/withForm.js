@@ -39,7 +39,8 @@ const withForm = (BaseComponent) => {
       return (
         <BaseComponent
           {...this.props}
-          {...this.state}
+          initialValues={this.state.initialValues}
+          currentValues={this.state.currentValues}
           setInitialValues={this.setInitialValues}
           setValue={this.setValue}
           setValues={this.setValues}

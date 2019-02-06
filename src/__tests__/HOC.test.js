@@ -140,3 +140,20 @@ describe.each(hocs)('%s', (hoc) => {
     expect(getCurrentValues()).toBe(getInitialValues())
   })
 })
+
+describe('formHOC redux specific', () => {
+  it('should delete form from redux', () => {
+    const values = {foo: 'foo', bar: 'bar'}
+    const Test = formHOCWrapper(({initialValues, currentValues, setInitialValues, deleteForm}) => (
+      <Component didMount={() => setInitialValues(values)}>
+        <Values initial={initialValues} current={currentValues} />
+        <button data-testid='delete' onClick={deleteForm} />
+      </Component>
+    ))
+    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<Test />)
+    expect(getCurrentValues()).toBe(getInitialValues())
+    expect(store.getState().getIn(['c2-form', 'test-form', 'initialValues']).toJS()).toEqual(values)
+    fireEvent.click(getByTestId('delete'))
+    expect(store.getState().get('c2-form').toJS()).toEqual({})
+  })
+})
