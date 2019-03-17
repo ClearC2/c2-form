@@ -3,7 +3,7 @@ import React, {Fragment} from 'react'
 import Component from '@reactions/component'
 import {Provider} from 'react-redux'
 import {render, fireEvent, cleanup} from 'react-testing-library'
-import {withForm, formHOC} from '..'
+import {withForm, formHOC, useForm} from '..'
 import store from '../../example/src/store'
 
 const Values = ({initial, current}) => (
@@ -42,9 +42,17 @@ formHOCWrapper.toString = () => 'formHOC'
 const withFormWrapper = (TestClass) => withForm(TestClass)
 withFormWrapper.toString = () => 'withForm'
 
+const hookWrapper = (TestClass) => () => {
+  const form = useForm({foo: 'bar'})
+  return <TestClass {...form} />
+}
+
+hookWrapper.toString = () => 'useForm'
+
 const hocs = [
   formHOCWrapper,
-  withFormWrapper
+  withFormWrapper,
+  hookWrapper
 ]
 
 // test both redux and redux-less HOC's
