@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/ClearC2/c2-form/compare/v1.2.0...v2.0.0) (2019-03-17)
+
+
+### Features
+
+* **useForm:** add useForm hook ([#9](https://github.com/ClearC2/c2-form/issues/9)) ([edad7b9](https://github.com/ClearC2/c2-form/commit/edad7b9))
+
+
+### BREAKING CHANGES
+
+* **useForm:** requires react, react-dom >= 16.8 for hooks
+
 # [1.2.0](https://github.com/ClearC2/c2-form/compare/v1.1.1...v1.2.0) (2019-02-06)
 
 
