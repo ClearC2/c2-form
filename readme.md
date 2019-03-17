@@ -1,14 +1,49 @@
 # C2 Form [![CircleCI](https://circleci.com/gh/ClearC2/c2-form.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-form)
 
-Redux/ImmutableJS enabled forms
+Flexible forms that use ImmutableJS and can be integrated with redux.
 
 ## Install
 
 ```
-yarn add ClearC2/c2-form#^1.0.0
+yarn add ClearC2/c2-form#^2.0.0
 ```
 
-Now add the reducer to your main application's reducer using the required key.
+## Usage
+The easiest way to get started is using the `useForm` hook.
+
+```js
+import React from 'react
+import {useForm} from 'c2-form
+
+function NewsletterSignUpForm () {
+  const form = useForm({name: '', email: ''}) // pass initial values
+  const values = form.currentValues
+  return (
+    <form>
+      <label>Name</label>
+      <input
+      	type='text'
+        value={values.get('name')}
+        onChange={(e) => form.setValue('name', e.target.value)}
+      />
+      <label>Email</label>
+      <input
+      	type='text'
+        value={values.get('email')}
+        onChange={(e) => form.setValue('email', e.target.value)}
+      />
+      <button type='submit' disabled={!form.isDirty}>Submit</button>
+    </form>
+  )
+}
+
+```
+
+See `props` below to see all properties of `form`
+
+
+## Redux support
+To use the redux HOC, `formHOC`, add the reducer to your main application's reducer using the required key.
 
 ```js
 import {combineReducers} from 'redux-immutable'
@@ -20,7 +55,7 @@ const reducer = combineReducers({
 })
 ```
 
-## Usage
+## Redux usage
 ```js
 import {connect} from 'react-redux'
 import {formHOC} from 'c2-form'
@@ -35,7 +70,7 @@ The `formHOC` gives your component props and connected actions scoped to this sp
 
 [See the working example.](example/src/Example.js)
 
-## Redux-less
+## Redux-less HOC
 There is also a redux-less HOC that uses component state. You do not need to pass in a `formName`.
 The passed down props are exactly the same except for `deleteForm`. This is not passed down because `deleteForm` is only relevant
 for the redux enabled `formHOC` HOC.
