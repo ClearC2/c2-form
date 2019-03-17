@@ -13,7 +13,7 @@ The easiest way to get started is using the `useForm` hook.
 
 ```js
 import React from 'react'
-import {useForm} from 'c2-form
+import {useForm} from 'c2-form'
 
 function NewsletterSignUpForm () {
   const form = useForm({name: '', email: ''}) // pass initial values
