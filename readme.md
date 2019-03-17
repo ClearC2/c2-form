@@ -12,7 +12,7 @@ yarn add ClearC2/c2-form#^2.0.0
 The easiest way to get started is using the `useForm` hook.
 
 ```js
-import React from 'react
+import React from 'react'
 import {useForm} from 'c2-form
 
 function NewsletterSignUpForm () {
@@ -32,7 +32,9 @@ function NewsletterSignUpForm () {
         value={values.get('email')}
         onChange={(e) => form.setValue('email', e.target.value)}
       />
-      <button type='submit' disabled={!form.isDirty}>Submit</button>
+      <button type='submit' disabled={!form.isDirty}>
+        Submit
+      </button>
     </form>
   )
 }
