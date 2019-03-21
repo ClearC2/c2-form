@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ClearC2/c2-form/compare/v2.0.0...v2.1.0) (2019-03-21)
+
+
+### Features
+
+* **deleteFields:** add deleteFields ([#10](https://github.com/ClearC2/c2-form/issues/10)) ([8415a69](https://github.com/ClearC2/c2-form/commit/8415a69))
+
 # [2.0.0](https://github.com/ClearC2/c2-form/compare/v1.2.0...v2.0.0) (2019-03-17)
 
 
