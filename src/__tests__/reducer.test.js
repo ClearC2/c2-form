@@ -141,4 +141,38 @@ describe('reducer', () => {
       }
     }))
   })
+
+  it('handles deleteFields', () => {
+    const formName = 'ticket'
+    const fields = ['foo', 'baz']
+    const action = actions.deleteFields(formName, fields)
+    const currentState = fromJS({
+      [action.formName]: {
+        initialValues: {
+          foo: 'foo',
+          bar: 'bar',
+          baz: 'baz'
+        },
+        currentValues: {
+          foo: 'foo',
+          bar: 'bar',
+          baz: 'baz'
+        }
+      }
+    })
+    const nextState = reducer(currentState, action)
+
+    expect(nextState).toEqual(fromJS({
+      [action.formName]: {
+        initialValues: {
+          foo: 'foo',
+          bar: 'bar',
+          baz: 'baz'
+        },
+        currentValues: {
+          bar: 'bar'
+        }
+      }
+    }))
+  })
 })

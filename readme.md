@@ -107,6 +107,9 @@ Set multiple values in the form at once. The `values` object should be field/val
 #### `deleteField(field: string): func`
 Delete a form field.
 
+#### `deleteFields(fields: array): func`
+Delete multiple form fields.
+
 #### `reset(): func`
 Sets the `currentValues` back to the `initialValues`.
 

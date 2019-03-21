@@ -6,6 +6,7 @@ import {
   setValue,
   setValues,
   deleteField,
+  deleteFields,
   deleteForm,
   reset
 } from './actions'
@@ -16,6 +17,7 @@ const actions = {
   setValue,
   setValues,
   deleteField,
+  deleteFields,
   deleteForm,
   reset
 }
@@ -29,6 +31,7 @@ export default function (BaseComponent) {
     setValue = (field, value) => this.props.setValue(this.props.formName, field, toJS(value))
     setValues = (values) => this.props.setValues(this.props.formName, toJS(values))
     deleteField = (field) => this.props.deleteField(this.props.formName, field)
+    deleteFields = (fields) => this.props.deleteFields(this.props.formName, fields)
     deleteForm = () => this.props.deleteForm(this.props.formName)
     reset = () => this.props.reset(this.props.formName)
     render () {
@@ -39,6 +42,7 @@ export default function (BaseComponent) {
           setValue={this.setValue}
           setValues={this.setValues}
           deleteField={this.deleteField}
+          deleteFields={this.deleteFields}
           deleteForm={this.deleteForm}
           reset={this.reset}
         />

@@ -8,6 +8,7 @@ export const formPropTypes = {
   setValue: PropTypes.func.isRequired,
   setValues: PropTypes.func.isRequired,
   deleteField: PropTypes.func.isRequired,
+  deleteFields: PropTypes.func.isRequired,
   deleteForm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired
 }
