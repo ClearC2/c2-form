@@ -29,6 +29,13 @@ const withForm = (BaseComponent) => {
         currentValues: this.state.currentValues.delete(field)
       })
     }
+    deleteFields = (fields) => {
+      let currentValues = this.state.currentValues
+      fields.forEach(field => {
+        currentValues = currentValues.delete(field)
+      })
+      this.setState({currentValues})
+    }
     reset = () => {
       this.setState({
         currentValues: this.state.initialValues
@@ -45,6 +52,7 @@ const withForm = (BaseComponent) => {
           setValue={this.setValue}
           setValues={this.setValues}
           deleteField={this.deleteField}
+          deleteFields={this.deleteFields}
           reset={this.reset}
           isDirty={!initialValues.equals(currentValues)}
         />

@@ -118,6 +118,19 @@ describe.each(hocs)('%s', (hoc) => {
     expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
   })
 
+  it('should delete fields', () => {
+    const values = {foo: 'foo', bar: 'bar', baz: 'baz'}
+    const Test = hoc(({currentValues, setInitialValues, deleteFields}) => (
+      <Component didMount={() => setInitialValues(values)}>
+        <Values current={currentValues} />
+        <button onClick={() => deleteFields(['foo', 'baz'])} />
+      </Component>
+    ))
+    const {clickButton, getCurrentValues} = renderTest(<Test />)
+    clickButton()
+    expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
+  })
+
   it('should pass isDirty flag', () => {
     const values = {foo: 'foo', bar: 'bar'}
     const Test = hoc(({setInitialValues, setValue, isDirty}) => (

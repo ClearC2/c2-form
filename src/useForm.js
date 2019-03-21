@@ -21,6 +21,12 @@ function reducer (state, action) {
       return state.mergeIn(['currentValues'], fromJS(action.values))
     case 'DELETE_FIELD':
       return state.deleteIn(['currentValues', action.field])
+    case 'DELETE_FIELDS':
+      let currentValues = state.get('currentValues') || emptyMap
+      action.fields.forEach(field => {
+        currentValues = currentValues.delete(field)
+      })
+      return state.set('currentValues', currentValues)
     case 'RESET':
       return init(state.get('initialValues'))
     default:
@@ -35,6 +41,7 @@ function useForm (values = {}) {
   const setValues = React.useCallback((values) => dispatch({type: 'SET_VALUES', values}), [dispatch])
   const reset = React.useCallback(() => dispatch({type: 'RESET'}), [dispatch])
   const deleteField = React.useCallback((field) => dispatch({type: 'DELETE_FIELD', field}), [dispatch])
+  const deleteFields = React.useCallback((fields) => dispatch({type: 'DELETE_FIELDS', fields}), [dispatch])
   const initialValues = state.get('initialValues') || emptyMap
   const currentValues = state.get('currentValues') || emptyMap
   const isDirty = React.useMemo(() => {
@@ -47,6 +54,7 @@ function useForm (values = {}) {
     setValue,
     setValues,
     deleteField,
+    deleteFields,
     reset,
     isDirty
   }
