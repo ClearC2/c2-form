@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/ClearC2/c2-form/compare/v2.1.0...v2.2.0) (2019-05-02)
+
+
+### Features
+
+* add ability to set currentValues independently during intialization ([#11](https://github.com/ClearC2/c2-form/issues/11)) ([59e570c](https://github.com/ClearC2/c2-form/commit/59e570c))
+
 # [2.1.0](https://github.com/ClearC2/c2-form/compare/v2.0.0...v2.1.0) (2019-03-21)
 
 
