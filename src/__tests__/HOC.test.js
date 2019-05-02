@@ -160,6 +160,19 @@ describe.each(hocs)('%s', (hoc) => {
     fireEvent.click(getByTestId('reset'))
     expect(getCurrentValues()).toBe(getInitialValues())
   })
+
+  it('should set initial and current values if present', () => {
+    const iValues = {foo: 'foo', bar: 'bar'}
+    const cValues = {foo: 'foo1', bar: 'bar2'}
+    const Test = hoc(({initialValues, currentValues, setInitialValues}) => (
+      <Component didMount={() => setInitialValues(iValues, cValues)}>
+        <Values initial={initialValues} current={currentValues} />
+      </Component>
+    ))
+    const {getCurrentValues, getInitialValues} = renderTest(<Test />)
+    expect(getInitialValues()).toBe(JSON.stringify(iValues))
+    expect(getCurrentValues()).toBe(JSON.stringify(cValues))
+  })
 })
 
 describe('formHOC redux specific', () => {

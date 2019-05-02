@@ -1,5 +1,10 @@
 export const SET_INITIAL_VALUES = 'c2-form/SET_INITIAL_VALUES'
-export const setInitialValues = (formName, values) => ({type: SET_INITIAL_VALUES, formName, values})
+export const setInitialValues = (formName, initialValues, currentValues) => ({
+  type: SET_INITIAL_VALUES,
+  formName,
+  initialValues,
+  currentValues
+})
 
 export const SET_VALUE = 'c2-form/SET_VALUE'
 export const setValue = (formName, field, value) => ({type: SET_VALUE, formName, field, value})

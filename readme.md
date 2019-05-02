@@ -95,9 +95,9 @@ The current values of the form. Defaults to `Map()`.
 #### `isDirty: boolean`
 `true` if the `initialValues` do not equal the `currentValues`. Defaults to `false`.
 
-#### `setInitialValues(values: object): func`
+#### `setInitialValues(initialValues: object, currentValues: ?object): func`
 Initialize your form in the `componentDidMount` lifecycle method with this action and pass in an object of field/value pairs.
-
+If a second argument is passed, it will set the current values equal to that argument. Needing to send `currentValues` should be very rare. 
 #### `setValue(field: string, value: any): func`
 Set a value in the form. Use this in an `input`'s `onChange` callback.
 

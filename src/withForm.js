@@ -7,11 +7,11 @@ const withForm = (BaseComponent) => {
       initialValues: Map(),
       currentValues: Map()
     }
-    setInitialValues = (values) => {
-      values = fromJS(values)
+    setInitialValues = (initialValues, currentValues) => {
+      initialValues = fromJS(initialValues)
       this.setState({
-        initialValues: values,
-        currentValues: values
+        initialValues,
+        currentValues: currentValues ? fromJS(currentValues) : initialValues
       })
     }
     setValue = (field, value) => {

@@ -3,18 +3,18 @@ import {fromJS, Map} from 'immutable'
 
 const emptyMap = Map()
 
-function init (values = {}) {
-  values = fromJS(values)
+function init (initialValues = {}, currentValues) {
+  initialValues = fromJS(initialValues)
   return fromJS({
-    initialValues: values,
-    currentValues: values
+    initialValues,
+    currentValues: currentValues ? fromJS(currentValues) : initialValues
   })
 }
 
 function reducer (state, action) {
   switch (action.type) {
     case 'SET_INITIAL_VALUES':
-      return init(action.values)
+      return init(action.initialValues, action.currentValues)
     case 'SET_VALUE':
       return state.setIn(['currentValues', action.field], fromJS(action.value))
     case 'SET_VALUES':
@@ -36,7 +36,9 @@ function reducer (state, action) {
 
 function useForm (values = {}) {
   const [state, dispatch] = React.useReducer(reducer, values, init)
-  const setInitialValues = React.useCallback((values) => dispatch({type: 'SET_INITIAL_VALUES', values}), [dispatch])
+  const setInitialValues = React.useCallback((initialValues, currentValues) => {
+    dispatch({type: 'SET_INITIAL_VALUES', initialValues, currentValues})
+  }, [dispatch])
   const setValue = React.useCallback((field, value) => dispatch({type: 'SET_VALUE', field, value}), [dispatch])
   const setValues = React.useCallback((values) => dispatch({type: 'SET_VALUES', values}), [dispatch])
   const reset = React.useCallback(() => dispatch({type: 'RESET'}), [dispatch])

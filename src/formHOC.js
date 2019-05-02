@@ -27,7 +27,9 @@ const toJS = value => value && value.toJS ? value.toJS() : value
 export default function (BaseComponent) {
   return connect(selector, actions)(class FormHOC extends Component {
     static propTypes = formPropTypes
-    setInitialValues = (values) => this.props.setInitialValues(this.props.formName, toJS(values))
+    setInitialValues = (initialValues, currentValues) => {
+      this.props.setInitialValues(this.props.formName, toJS(initialValues), toJS(currentValues))
+    }
     setValue = (field, value) => this.props.setValue(this.props.formName, field, toJS(value))
     setValues = (values) => this.props.setValues(this.props.formName, toJS(values))
     deleteField = (field) => this.props.deleteField(this.props.formName, field)
