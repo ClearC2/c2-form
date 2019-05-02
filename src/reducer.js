@@ -15,8 +15,8 @@ function form (state = Map(), action) {
   switch (action.type) {
     case SET_INITIAL_VALUES:
       return state.set(action.formName, fromJS({
-        initialValues: action.values,
-        currentValues: action.values
+        initialValues: action.initialValues,
+        currentValues: action.currentValues || action.initialValues
       }))
     case SET_VALUE:
       return state.setIn([action.formName, 'currentValues', action.field], fromJS(action.value))
