@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {formHOC} from '../../src/index'
+import {formHOC} from '@clearc2/c2-form'
 
 class Example extends Component {
   componentDidMount = () => {
