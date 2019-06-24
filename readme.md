@@ -1,11 +1,11 @@
-# C2 Form [![CircleCI](https://circleci.com/gh/ClearC2/c2-form.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-form)
+# @clearc2/c2-form [![CircleCI](https://circleci.com/gh/ClearC2/c2-form.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-form)
 
 Flexible forms that use ImmutableJS and can be integrated with redux.
 
 ## Install
 
 ```
-yarn add ClearC2/c2-form#^2.0.0
+yarn add @clearc2/c2-form
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ The easiest way to get started is using the `useForm` hook.
 
 ```js
 import React from 'react'
-import {useForm} from 'c2-form'
+import {useForm} from '@clearc2/c2-form'
 
 function NewsletterSignUpForm () {
   const form = useForm({name: '', email: ''}) // pass initial values
@@ -49,7 +49,7 @@ To use the redux HOC, `formHOC`, add the reducer to your main application's redu
 
 ```js
 import {combineReducers} from 'redux-immutable'
-import {reducer as formReducer} from 'c2-form'
+import {reducer as formReducer} from '@clearc2/c2-form'
 
 const reducer = combineReducers({
   // ...other reducers
@@ -60,7 +60,7 @@ const reducer = combineReducers({
 ## Redux usage
 ```js
 import {connect} from 'react-redux'
-import {formHOC} from 'c2-form'
+import {formHOC} from '@clearc2/c2-form'
 import SiteForm from './SiteForm'
 
 const props = {siteId} => ({formName: `site-form-${siteId}`})
@@ -79,7 +79,7 @@ for the redux enabled `formHOC` HOC.
 
 
 ```js
-import {withForm} from 'c2-form'
+import {withForm} from '@clearc2/c2-form'
 import SiteForm from './SiteForm'
 
 export default withForm(SiteForm)
