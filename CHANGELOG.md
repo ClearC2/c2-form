@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/ClearC2/c2-form/compare/v2.2.0...v3.0.0) (2019-06-25)
+
+
+### Bug Fixes
+
+* upgrade deps ([#12](https://github.com/ClearC2/c2-form/issues/12)) ([b6788a4](https://github.com/ClearC2/c2-form/commit/b6788a4))
+
+
+### BREAKING CHANGES
+
+* move to @clearc2 scope
+
 # [2.2.0](https://github.com/ClearC2/c2-form/compare/v2.1.0...v2.2.0) (2019-05-02)
 
 
