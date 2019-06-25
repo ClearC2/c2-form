@@ -1,26 +1,11 @@
-/* eslint-disable */
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const {webpackConfig} = require('@clearc2/c2-react-config')
+const {presets} = webpackConfig
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
-        include: [path.join(__dirname, 'src'), path.join(__dirname, '../src')],
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
-      }
-    ]
-  },
-  plugins: [new ExtractTextPlugin('styles.css')]
+presets.common = presets.common.concat(['alias'])
+
+module.exports = (env) => {
+  env.presetDir = path.join(__dirname, 'webpack')
+  env.projectDir = __dirname
+  return webpackConfig(env)
 }

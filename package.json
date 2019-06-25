@@ -1,5 +1,5 @@
 {
-  "name": "c2-form",
+  "name": "@clearc2/c2-form",
   "version": "2.2.0",
   "description": "a react/redux form component",
   "repository": {
@@ -7,8 +7,12 @@
     "url": "https://github.com/ClearC2/c2-form"
   },
   "main": "lib/index.js",
+  "module": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "start": "cd example && webpack-dev-server --inline --content-base dist --history-api-fallback --port 8088",
+    "start": "cd example && webpack-dev-server --content-base dist --port 8088 --hot --env.mode development",
     "build": "yarn clean && NODE_ENV=production babel -d lib/ src/",
     "clean": "rimraf lib",
     "lint": "eslint",
@@ -24,7 +28,12 @@
   },
   "release": {
     "branch": "master",
-    "extends": "c2-semantic-release"
+    "extends": "c2-semantic-release",
+    "npmPublish": true,
+    "publish": [
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   },
   "husky": {
     "hooks": {
@@ -38,31 +47,20 @@
   "author": "David Adams",
   "license": "ISC",
   "devDependencies": {
+    "@clearc2/c2-react-config": "^3.0.3",
     "@reactions/component": "^2.0.2",
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.8",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "c2-semantic-release": "ClearC2/c2-semantic-release#^1.0.0",
-    "css-loader": "^0.28.1",
-    "eslint-config-c2-react": "^1.4.3",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "@testing-library/react": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "c2-semantic-release": "ClearC2/c2-semantic-release#^2.0.0",
+    "husky": "^2.5.0",
     "immutable": "^3.8.2",
-    "jest": "^23.6.0",
+    "jest": "^24.8.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "react-testing-library": "^6.0.0",
     "redux": "^3.7.2",
     "redux-immutable": "^4.0.0",
-    "rimraf": "^2.6.2",
-    "style-loader": "^0.17.0",
-    "webpack": "^2.5.0",
-    "webpack-dev-server": "^2.4.5"
+    "rimraf": "^2.6.2"
   },
   "peerDependencies": {
     "immutable": "^3.0.0",

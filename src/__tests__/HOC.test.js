@@ -2,7 +2,7 @@
 import React, {Fragment} from 'react'
 import Component from '@reactions/component'
 import {Provider} from 'react-redux'
-import {render, fireEvent, cleanup} from 'react-testing-library'
+import {render, fireEvent, cleanup} from '@testing-library/react'
 import {withForm, formHOC, useForm} from '..'
 import store from '../../example/src/store'
 
