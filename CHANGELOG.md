@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/ClearC2/c2-form/compare/v3.0.0...v3.0.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* **cjs:** add cjs build to allow package to be tested in other apps ([1e19175](https://github.com/ClearC2/c2-form/commit/1e19175))
+
 # [3.0.0](https://github.com/ClearC2/c2-form/compare/v2.2.0...v3.0.0) (2019-06-25)
 
 
