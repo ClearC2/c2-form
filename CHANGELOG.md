@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/ClearC2/c2-form/compare/v3.0.1...v3.0.2) (2020-02-14)
+
+
+### Bug Fixes
+
+* add npmignore ([da598bd](https://github.com/ClearC2/c2-form/commit/da598bd))
+
 ## [3.0.1](https://github.com/ClearC2/c2-form/compare/v3.0.0...v3.0.1) (2019-10-23)
 
 
