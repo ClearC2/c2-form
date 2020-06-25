@@ -16,34 +16,36 @@ const withForm = (BaseComponent) => {
       }))
     }
     setValue = (field, value) => {
-      this.setState((state) =>  ({
+      this.setState((state) => ({
         ...state,
-        currentValues: this.state.currentValues.set(field, fromJS(value))
+        currentValues: state.currentValues.set(field, fromJS(value))
       }))
     }
     setValues = (values) => {
       this.setState((state) => ({
         ...state,
-        currentValues: this.state.currentValues.merge(fromJS(values))
+        currentValues: state.currentValues.merge(fromJS(values))
       }))
     }
     deleteField = (field) => {
       this.setState((state) => ({
         ...state,
-        currentValues: this.state.currentValues.delete(field)
+        currentValues: state.currentValues.delete(field)
       }))
     }
     deleteFields = (fields) => {
-      let currentValues = this.state.currentValues
-      fields.forEach(field => {
-        currentValues = currentValues.delete(field)
+      this.setState((state) => {
+        let currentValues = state.currentValues
+        fields.forEach(field => {
+          currentValues = currentValues.delete(field)
+        })
+        return {...state, currentValues}
       })
-      this.setState((state) => ({...state, currentValues}))
     }
     reset = () => {
-      this.setState((state) =>  ({
+      this.setState((state) => ({
         ...state,
-        currentValues: this.state.initialValues
+        currentValues: state.initialValues
       }))
     }
     render () {
