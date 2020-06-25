@@ -15,6 +15,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -62,44 +64,55 @@ var withForm = function withForm(BaseComponent) {
       _defineProperty(_assertThisInitialized(_this), "setInitialValues", function (initialValues, currentValues) {
         initialValues = (0, _immutable.fromJS)(initialValues);
 
-        _this.setState({
-          initialValues: initialValues,
-          currentValues: currentValues ? (0, _immutable.fromJS)(currentValues) : initialValues
+        _this.setState(function (state) {
+          return _objectSpread({}, state, {
+            initialValues: initialValues,
+            currentValues: currentValues ? (0, _immutable.fromJS)(currentValues) : initialValues
+          });
         });
       });
 
       _defineProperty(_assertThisInitialized(_this), "setValue", function (field, value) {
-        _this.setState({
-          currentValues: _this.state.currentValues.set(field, (0, _immutable.fromJS)(value))
+        _this.setState(function (state) {
+          return _objectSpread({}, state, {
+            currentValues: state.currentValues.set(field, (0, _immutable.fromJS)(value))
+          });
         });
       });
 
       _defineProperty(_assertThisInitialized(_this), "setValues", function (values) {
-        _this.setState({
-          currentValues: _this.state.currentValues.merge((0, _immutable.fromJS)(values))
+        _this.setState(function (state) {
+          return _objectSpread({}, state, {
+            currentValues: state.currentValues.merge((0, _immutable.fromJS)(values))
+          });
         });
       });
 
       _defineProperty(_assertThisInitialized(_this), "deleteField", function (field) {
-        _this.setState({
-          currentValues: _this.state.currentValues["delete"](field)
+        _this.setState(function (state) {
+          return _objectSpread({}, state, {
+            currentValues: state.currentValues["delete"](field)
+          });
         });
       });
 
       _defineProperty(_assertThisInitialized(_this), "deleteFields", function (fields) {
-        var currentValues = _this.state.currentValues;
-        fields.forEach(function (field) {
-          currentValues = currentValues["delete"](field);
-        });
-
-        _this.setState({
-          currentValues: currentValues
+        _this.setState(function (state) {
+          var currentValues = state.currentValues;
+          fields.forEach(function (field) {
+            currentValues = currentValues["delete"](field);
+          });
+          return _objectSpread({}, state, {
+            currentValues: currentValues
+          });
         });
       });
 
       _defineProperty(_assertThisInitialized(_this), "reset", function () {
-        _this.setState({
-          currentValues: _this.state.initialValues
+        _this.setState(function (state) {
+          return _objectSpread({}, state, {
+            currentValues: state.initialValues
+          });
         });
       });
 

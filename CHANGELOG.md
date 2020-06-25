@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/ClearC2/c2-form/compare/v3.0.2...v3.0.3) (2020-06-25)
+
+
+### Bug Fixes
+
+* **withForm:** use functional setState ([#19](https://github.com/ClearC2/c2-form/issues/19)) ([d00da36](https://github.com/ClearC2/c2-form/commit/d00da36))
+
 ## [3.0.2](https://github.com/ClearC2/c2-form/compare/v3.0.1...v3.0.2) (2020-02-14)
 
 
