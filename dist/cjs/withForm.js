@@ -81,6 +81,17 @@ var withForm = function withForm(BaseComponent) {
       });
 
       _defineProperty(_assertThisInitialized(_this), "setValues", function (values) {
+        if (typeof values === 'function') {
+          _this.setState(function (state) {
+            values = values(state.currentValues);
+            return _objectSpread({}, state, {
+              currentValues: (0, _immutable.fromJS)(values)
+            });
+          });
+
+          return;
+        }
+
         _this.setState(function (state) {
           return _objectSpread({}, state, {
             currentValues: state.currentValues.merge((0, _immutable.fromJS)(values))

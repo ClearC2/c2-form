@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/ClearC2/c2-form/compare/v3.0.3...v3.1.0) (2020-09-15)
+
+
+### Features
+
+* **setValues:** add functional setValues ([7416e1f](https://github.com/ClearC2/c2-form/commit/7416e1f))
+
 ## [3.0.3](https://github.com/ClearC2/c2-form/compare/v3.0.2...v3.0.3) (2020-06-25)
 
 

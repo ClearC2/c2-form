@@ -40,7 +40,16 @@ function reducer(state, action) {
       return state.setIn(['currentValues', action.field], (0, _immutable.fromJS)(action.value));
 
     case 'SET_VALUES':
-      return state.mergeIn(['currentValues'], (0, _immutable.fromJS)(action.values));
+      {
+        if (typeof action.values === 'function') {
+          var _currentValues = state.get('currentValues') || emptyMap;
+
+          var values = action.values(_currentValues);
+          return state.set('currentValues', (0, _immutable.fromJS)(values));
+        }
+
+        return state.mergeIn(['currentValues'], (0, _immutable.fromJS)(action.values));
+      }
 
     case 'DELETE_FIELD':
       return state.deleteIn(['currentValues', action.field]);

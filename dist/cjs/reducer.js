@@ -26,6 +26,13 @@ function form() {
       return state.setIn([action.formName, 'currentValues', action.field], (0, _immutable.fromJS)(action.value));
 
     case _actions.SET_VALUES:
+      if (typeof action.values === 'function') {
+        var _currentValues = state.getIn([action.formName, 'currentValues']) || emptyMap;
+
+        var values = action.values(_currentValues);
+        return state.setIn([action.formName, 'currentValues'], (0, _immutable.fromJS)(values));
+      }
+
       return state.mergeIn([action.formName, 'currentValues'], (0, _immutable.fromJS)(action.values));
 
     case _actions.RESET:
