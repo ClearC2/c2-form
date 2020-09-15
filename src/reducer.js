@@ -21,6 +21,11 @@ function form (state = Map(), action) {
     case SET_VALUE:
       return state.setIn([action.formName, 'currentValues', action.field], fromJS(action.value))
     case SET_VALUES:
+      if (typeof action.values === 'function') {
+        const currentValues = state.getIn([action.formName, 'currentValues']) || emptyMap
+        const values = action.values(currentValues)
+        return state.setIn([action.formName, 'currentValues'], fromJS(values))
+      }
       return state.mergeIn([action.formName, 'currentValues'], fromJS(action.values))
     case RESET:
       return state.setIn(

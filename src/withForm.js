@@ -22,6 +22,16 @@ const withForm = (BaseComponent) => {
       }))
     }
     setValues = (values) => {
+      if (typeof values === 'function') {
+        this.setState((state) => {
+          values = values(state.currentValues)
+          return {
+            ...state,
+            currentValues: fromJS(values)
+          }
+        })
+        return
+      }
       this.setState((state) => ({
         ...state,
         currentValues: state.currentValues.merge(fromJS(values))
