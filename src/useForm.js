@@ -17,8 +17,14 @@ function reducer (state, action) {
       return init(action.initialValues, action.currentValues)
     case 'SET_VALUE':
       return state.setIn(['currentValues', action.field], fromJS(action.value))
-    case 'SET_VALUES':
+    case 'SET_VALUES': {
+      if (typeof action.values === 'function') {
+        const currentValues = state.get('currentValues') || emptyMap
+        const values = action.values(currentValues)
+        return state.set('currentValues', fromJS(values))
+      }
       return state.mergeIn(['currentValues'], fromJS(action.values))
+    }
     case 'DELETE_FIELD':
       return state.deleteIn(['currentValues', action.field])
     case 'DELETE_FIELDS':

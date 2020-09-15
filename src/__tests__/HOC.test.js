@@ -173,6 +173,26 @@ describe.each(hocs)('%s', (hoc) => {
     expect(getInitialValues()).toBe(JSON.stringify(iValues))
     expect(getCurrentValues()).toBe(JSON.stringify(cValues))
   })
+
+  it('should handle functional setValues', () => {
+    const iValues = {foo: 1, bar: 2, blah: true}
+    const Test = hoc(({initialValues, currentValues, setInitialValues, setValues}) => (
+      <Component didMount={() => setInitialValues(iValues)}>
+        <Values initial={initialValues} current={currentValues} />
+        <button
+          data-testid='replace-values'
+          onClick={() => {
+            setValues(values => values.set('baz', values.get('bar') * 3).delete('blah'))
+          }}
+        />
+      </Component>
+    ))
+    const {getByTestId, getCurrentValues, getInitialValues} = renderTest(<Test />)
+    expect(getInitialValues()).toBe(JSON.stringify(iValues))
+    fireEvent.click(getByTestId('replace-values'))
+    const expected = {foo: 1, bar: 2, baz: 6}
+    expect(getCurrentValues()).toBe(JSON.stringify(expected))
+  })
 })
 
 describe('formHOC redux specific', () => {
