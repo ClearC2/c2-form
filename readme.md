@@ -95,6 +95,9 @@ The current values of the form. Defaults to `Map()`.
 #### `isDirty: boolean`
 `true` if the `initialValues` do not equal the `currentValues`. Defaults to `false`.
 
+#### `isClean: boolean`
+`true` if the `initialValues` equal the `currentValues`. Defaults to `true`.
+
 #### `setInitialValues(initialValues: object, currentValues: ?object): func`
 Initialize your form in the `componentDidMount` lifecycle method with this action and pass in an object of field/value pairs.
 If a second argument is passed, it will set the current values equal to that argument. Needing to send `currentValues` should be very rare. 
@@ -115,6 +118,13 @@ Sets the `currentValues` back to the `initialValues`.
 
 #### `deleteForm(): func`
 Deletes the `formName` key and data from redux.
+
+
+## `useValues<T>()`
+This is a version of `useForm` that does _not_ convert the underlying data to immutable-js. It also supports a type generic so type safety is enforced.
+
+<img alt="useValues" src="https://user-images.githubusercontent.com/881986/177864825-83bc8f7d-8774-4e45-aa39-32f2f82ed787.png">
+
 
 ## Tips
 
