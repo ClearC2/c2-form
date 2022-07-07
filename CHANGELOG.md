@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/ClearC2/c2-form/compare/v3.1.0...v3.2.0) (2022-07-07)
+
+
+### Features
+
+* add useValues ([#45](https://github.com/ClearC2/c2-form/issues/45)) ([61652e4](https://github.com/ClearC2/c2-form/commit/61652e493721b5aeee5c01bde4dc04901b9a3f3a))
+
 # [3.1.0](https://github.com/ClearC2/c2-form/compare/v3.0.3...v3.1.0) (2020-09-15)
 
 

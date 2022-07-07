@@ -7,10 +7,12 @@ var form = function form(state, _ref) {
   var formName = _ref.formName;
   var initialValues = state.getIn([key, formName, 'initialValues']) || emptyMap;
   var currentValues = state.getIn([key, formName, 'currentValues']) || emptyMap;
+  var isDirty = !initialValues.equals(currentValues);
   return {
     initialValues: initialValues,
     currentValues: currentValues,
-    isDirty: !initialValues.equals(currentValues)
+    isDirty: isDirty,
+    isClean: !isDirty
   };
 };
 

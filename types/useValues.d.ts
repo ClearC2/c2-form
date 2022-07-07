@@ -1,4 +1,4 @@
-export default function useValues<T>(initValues: T, curValues?: T): {
+export default function useValues<T>(initialValues: T, currentValues?: T): {
     initialValues: T;
     currentValues: T;
     setInitialValues: (initialValues: T, currentValues?: T) => void;

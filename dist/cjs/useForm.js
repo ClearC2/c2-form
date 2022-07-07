@@ -140,7 +140,8 @@ function useForm() {
     deleteField: deleteField,
     deleteFields: deleteFields,
     reset: reset,
-    isDirty: isDirty
+    isDirty: isDirty,
+    isClean: !isDirty
   };
 }
 

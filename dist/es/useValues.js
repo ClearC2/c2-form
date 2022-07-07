@@ -95,10 +95,10 @@ function reducer(state, action) {
   }
 }
 
-export default function useValues(initValues, curValues) {
+export default function useValues(initialValues, currentValues) {
   var _useReducer = useReducer(reducer, {
-    initialValues: _objectSpread({}, initValues),
-    currentValues: curValues ? _objectSpread({}, curValues) : _objectSpread({}, initValues)
+    initialValues: _objectSpread({}, initialValues),
+    currentValues: currentValues ? _objectSpread({}, currentValues) : _objectSpread({}, initialValues)
   }),
       _useReducer2 = _slicedToArray(_useReducer, 2),
       state = _useReducer2[0],
@@ -141,14 +141,14 @@ export default function useValues(initValues, curValues) {
       type: Kind.reset
     });
   }, []);
-  var initialValues = state.initialValues,
-      currentValues = state.currentValues;
+  var iValues = state.initialValues,
+      cValues = state.currentValues;
   var isClean = useMemo(function () {
-    return isEqual(initialValues, currentValues);
-  }, [initialValues, currentValues]);
+    return isEqual(iValues, cValues);
+  }, [iValues, cValues]);
   return {
-    initialValues: initialValues,
-    currentValues: currentValues,
+    initialValues: iValues,
+    currentValues: cValues,
     setInitialValues: setInitialValues,
     setValue: setValue,
     setValues: setValues,

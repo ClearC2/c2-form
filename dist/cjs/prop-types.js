@@ -19,7 +19,9 @@ var formPropTypes = {
   deleteField: _propTypes["default"].func.isRequired,
   deleteFields: _propTypes["default"].func.isRequired,
   deleteForm: _propTypes["default"].func.isRequired,
-  reset: _propTypes["default"].func.isRequired
+  reset: _propTypes["default"].func.isRequired,
+  isDirty: _propTypes["default"].bool.isRequired,
+  isClean: _propTypes["default"].bool.isRequired
 };
 exports.formPropTypes = formPropTypes;
 var _default = formPropTypes;

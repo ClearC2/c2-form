@@ -140,6 +140,7 @@ var withForm = function withForm(BaseComponent) {
         var _this$state = this.state,
             initialValues = _this$state.initialValues,
             currentValues = _this$state.currentValues;
+        var isDirty = !initialValues.equals(currentValues);
         return /*#__PURE__*/_react["default"].createElement(BaseComponent, _extends({}, this.props, {
           initialValues: this.state.initialValues,
           currentValues: this.state.currentValues,
@@ -149,7 +150,8 @@ var withForm = function withForm(BaseComponent) {
           deleteField: this.deleteField,
           deleteFields: this.deleteFields,
           reset: this.reset,
-          isDirty: !initialValues.equals(currentValues)
+          isDirty: isDirty,
+          isClean: !isDirty
         }));
       }
     }]);
