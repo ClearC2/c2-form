@@ -1,10 +1,13 @@
 const path = require('path')
 
 module.exports = (env) => ({
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: [
           {
             loader: 'babel-loader',

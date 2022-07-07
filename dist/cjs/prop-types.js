@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.formPropTypes = void 0;
+exports.formPropTypes = exports["default"] = void 0;
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 

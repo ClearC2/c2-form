@@ -7,5 +7,8 @@ presets.common = presets.common.concat(['alias'])
 module.exports = (env) => {
   env.presetDir = path.join(__dirname, 'webpack')
   env.projectDir = __dirname
-  return webpackConfig(env)
+  return webpackConfig(env).then(config => {
+    console.log(JSON.stringify(config, null, 2))
+    return config
+  })
 }

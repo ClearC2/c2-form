@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteForm = exports.DELETE_FORM = exports.deleteFields = exports.DELETE_FIELDS = exports.deleteField = exports.DELETE_FIELD = exports.reset = exports.RESET = exports.setValues = exports.SET_VALUES = exports.setValue = exports.SET_VALUE = exports.setInitialValues = exports.SET_INITIAL_VALUES = void 0;
+exports.setValues = exports.setValue = exports.setInitialValues = exports.reset = exports.deleteForm = exports.deleteFields = exports.deleteField = exports.SET_VALUES = exports.SET_VALUE = exports.SET_INITIAL_VALUES = exports.RESET = exports.DELETE_FORM = exports.DELETE_FIELDS = exports.DELETE_FIELD = void 0;
 var SET_INITIAL_VALUES = 'c2-form/SET_INITIAL_VALUES';
 exports.SET_INITIAL_VALUES = SET_INITIAL_VALUES;
 
