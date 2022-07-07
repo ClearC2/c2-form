@@ -60,6 +60,7 @@ const withForm = (BaseComponent) => {
     }
     render () {
       const {initialValues, currentValues} = this.state
+      const isDirty = !initialValues.equals(currentValues)
       return (
         <BaseComponent
           {...this.props}
@@ -71,7 +72,8 @@ const withForm = (BaseComponent) => {
           deleteField={this.deleteField}
           deleteFields={this.deleteFields}
           reset={this.reset}
-          isDirty={!initialValues.equals(currentValues)}
+          isDirty={isDirty}
+          isClean={!isDirty}
         />
       )
     }

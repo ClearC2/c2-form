@@ -20,7 +20,8 @@ describe('selector', () => {
     expect(fromJS(props)).toEqual(fromJS({
       initialValues: values,
       currentValues: values,
-      isDirty: false
+      isDirty: false,
+      isClean: true
     }))
   })
 
@@ -47,7 +48,8 @@ describe('selector', () => {
     expect(fromJS(props)).toEqual(fromJS({
       initialValues: initialValues,
       currentValues: currentValues,
-      isDirty: true
+      isDirty: true,
+      isClean: false
     }))
   })
 })

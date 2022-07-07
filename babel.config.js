@@ -11,14 +11,14 @@ const presets = [
       useBuiltIns: 'entry'
     }
   ],
-  require.resolve('@babel/preset-react')
+  require.resolve('@babel/preset-react'),
+  require.resolve('@babel/preset-typescript')
 ]
 
 const plugins = [
   require.resolve('@babel/plugin-proposal-class-properties'),
   require.resolve('@babel/plugin-proposal-object-rest-spread'),
   require.resolve('@babel/plugin-syntax-dynamic-import'),
-  require.resolve('react-hot-loader/babel'),
   [
     require.resolve('babel-plugin-module-resolver'),
     {

@@ -64,7 +64,8 @@ function useForm (values = {}) {
     deleteField,
     deleteFields,
     reset,
-    isDirty
+    isDirty,
+    isClean: !isDirty
   }
 }
 

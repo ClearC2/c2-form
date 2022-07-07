@@ -131,18 +131,21 @@ describe.each(hocs)('%s', (hoc) => {
     expect(getCurrentValues()).toBe(JSON.stringify({bar: 'bar'}))
   })
 
-  it('should pass isDirty flag', () => {
+  it('should pass isDirty/isClean flag', () => {
     const values = {foo: 'foo', bar: 'bar'}
-    const Test = hoc(({setInitialValues, setValue, isDirty}) => (
+    const Test = hoc(({setInitialValues, setValue, isDirty, isClean}) => (
       <Component didMount={() => setInitialValues(values)}>
         <div>{isDirty ? 'DIRTY' : 'NOTDIRTY'}</div>
+        <div>{isClean ? 'CLEAN' : 'NOTCLEAN'}</div>
         <button onClick={() => setValue('foo', 'FOO')} />
       </Component>
     ))
     const {clickButton, getByText} = renderTest(<Test />)
     getByText('NOTDIRTY')
+    getByText('CLEAN')
     clickButton()
     getByText('DIRTY')
+    getByText('NOTCLEAN')
   })
 
   it('should reset', () => {

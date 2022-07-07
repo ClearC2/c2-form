@@ -10,7 +10,9 @@ export const formPropTypes = {
   deleteField: PropTypes.func.isRequired,
   deleteFields: PropTypes.func.isRequired,
   deleteForm: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired
+  reset: PropTypes.func.isRequired,
+  isDirty: PropTypes.bool.isRequired,
+  isClean: PropTypes.bool.isRequired
 }
 
 export default formPropTypes

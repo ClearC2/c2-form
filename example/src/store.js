@@ -1,7 +1,7 @@
 import {Map} from 'immutable'
 import {createStore, compose} from 'redux'
 import {combineReducers} from 'redux-immutable'
-import {reducer as formReducer} from '@clearc2/c2-form'
+import {reducer as formReducer} from '../../src'
 
 const reducer = combineReducers({
   [formReducer.key]: formReducer
