@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/ClearC2/c2-form/compare/v3.2.0...v3.2.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* **useValues:** add better typing for delete functions ([459e1e3](https://github.com/ClearC2/c2-form/commit/459e1e3fa926e9016e1a5b5c25840e5003fb2732))
+
 # [3.2.0](https://github.com/ClearC2/c2-form/compare/v3.1.0...v3.2.0) (2022-07-07)
 
 

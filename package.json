@@ -1,6 +1,6 @@
 {
   "name": "@clearc2/c2-form",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "a react/redux form component",
   "repository": {
     "type": "git",
