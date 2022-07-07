@@ -52,7 +52,12 @@ describe('useValues', function () {
   })
 
   it('should delete fields', () => {
-    const {result} = renderHook(() => useValues({foo: 'foo', bar: 'bar', baz: 'baz'}))
+    type Data = {
+      foo?: string,
+      bar?: string,
+      baz: string
+    }
+    const {result} = renderHook(() => useValues<Data>({foo: 'foo', bar: 'bar', baz: 'baz'}))
     act(() => {
       result.current.deleteFields(['foo', 'bar'])
     })

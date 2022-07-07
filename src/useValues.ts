@@ -10,20 +10,26 @@ enum Kind {
   deleteFields,
 }
 
-type TAction<T> =
+type OptionalPropertyOf<T extends object> = Exclude<{
+  [K in keyof T]: T extends Record<K, T[K]>
+    ? never
+    : K
+}[keyof T], undefined>
+
+type TAction<T extends object> =
   | { type: Kind.init; initialValues: T, currentValues?: T }
   | { type: Kind.reset }
   | { [k in keyof T]: { type: Kind.setValue; field: k; value: T[k] } }[keyof T]
   | { type: Kind.setValues; values: Partial<T> | ((values: T) => T) }
-  | { type: Kind.deleteField; field: keyof T }
-  | { type: Kind.deleteFields; fields: (keyof T)[] };
+  | { type: Kind.deleteField; field: OptionalPropertyOf<T> }
+  | { type: Kind.deleteFields; fields: OptionalPropertyOf<T>[] };
 
 type TReducerState<T> = {
   initialValues: T;
   currentValues: T;
 };
 
-function reducer<T>(
+function reducer<T extends object>(
   state: TReducerState<T>,
   action: TAction<T>
 ): TReducerState<T> {
@@ -81,7 +87,7 @@ function reducer<T>(
   }
 }
 
-export default function useValues<T>(initialValues: T, currentValues?: T) {
+export default function useValues<T extends object>(initialValues: T, currentValues?: T) {
   let [state, dispatch] = useReducer<
     Reducer<TReducerState<T>, TAction<T>>
     >(reducer, {
@@ -103,12 +109,11 @@ export default function useValues<T>(initialValues: T, currentValues?: T) {
     []
   );
 
-  let deleteField = useCallback(<K extends keyof T>(field: K) => {
+  let deleteField = useCallback((field: OptionalPropertyOf<T>) => {
     dispatch({ type: Kind.deleteField, field });
   }, []);
 
-  let deleteFields = useCallback(
-    <K extends keyof T>(fields: (keyof T)[]) => {
+  let deleteFields = useCallback((fields: OptionalPropertyOf<T>[]) => {
       dispatch({ type: Kind.deleteFields, fields });
     },
     []
